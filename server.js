@@ -32,7 +32,7 @@ const customers = [
   
 
 // roputes for html pages
-app.get("/", (req,res)=> {
+app.get("/index.html", (req,res)=> {
     res.sendFile(path.join(__dirname, "index.html"));
 })
 
@@ -46,6 +46,12 @@ app.get("/reservation.html", (req,res)=> {
 
 app.get("/api/tables", (req,res)=> {
     return res.send(customers);
+})
+
+app.post("/api/addreservation", function(req, res){
+    let newCustomer = req.body;
+
+    customers.push(newCustomer);
 })
 
 app.listen(PORT, ()=> {
