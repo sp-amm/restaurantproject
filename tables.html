@@ -7,10 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script>
-
     
-    <title>Restaruant Booking App</title>
+    <title>Restaurant Booking App</title>
   </head>
   <body>
 
@@ -22,7 +20,7 @@
         <p></p>
         <div class="justify-content-center">
         <a class="btn btn-danger btn-lg" href="reservation.html" role="button">Make a reservation</a>
-        <button type="button" class="btn btn-lg-dark" href="index.html">Home</button>
+        <a role="button" class="btn btn-lg-dark" href="index.html">Home</a>
       </div>
     </div>
 
@@ -43,26 +41,28 @@
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script>
 
     <script>
       function getTables(){
         $.get("/api/tables",function(data){
           console.log(data);
-            for (let index = 1; index < data.length; index++) {
+            for (let index = 0; index < data.length; index++) {
               
               let tableList = $("#reservationList");
 
               let tableListItem = $("<li class=`list-group-item mt-4>")
               
               tableListItem.append(
-                $("<h2>").text(`Table# ${index}`),
+                $("<h2>").text(`Table# ${index + 1}`),
                 $("<br>"),
                 $("<h2>").text(`ID: ${data[index].customerID}`),
-                $("<h2>").text(`ID: ${data[index].customerName}`),
-                $("<h2>").text(`ID: ${data[index].customerEmail}`), 
-                $("<h2>").text(`ID: ${data[index].customerPhone}`), 
+                $("<h2>").text(`Name: ${data[index].customerName}`),
+                $("<h2>").text(`Email: ${data[index].customerEmail}`), 
+                $("<h2>").text(`Phone: ${data[index].customerPhone}`), 
+                $("<br>"),
               );
 
               tableList.append(tableListItem);

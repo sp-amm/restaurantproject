@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script>
     <title>Restaruant Booking App</title>
   </head>
   <body>
@@ -21,7 +21,7 @@
         <p></p>
         <div class="justify-content-center">
         <a class="btn btn-danger btn-lg" href="tables.html" role="button">View Tables</a>
-        <button type="button" class="btn btn-lg-dark" href="index.html">Home</button>
+        <a class="btn btn-lg-dark" href="index.html" role="button">Home</a>
             </div>
       </div>
 
@@ -57,10 +57,10 @@
         $("#submitform").on("click", function(form) {
             event.preventDefault();
             let newReservation = {
-                name: $("#name").val().trim(),
-                phone: $("#phone").val().trim(),
-                email: $("#email").val().trim(),
-                id: $("#id").val().trim(),
+                customerName: $("#name").val().trim(),
+                customerPhone: $("#phone").val().trim(),
+                customerEmail: $("#email").val().trim(),
+                customerID: $("#id").val().trim(),
             };
             
             console.log(newReservation);
@@ -78,7 +78,7 @@
       <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
     <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
