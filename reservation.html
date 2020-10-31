@@ -66,11 +66,19 @@
             console.log(newReservation);
 
             
-            $.post("/api/addreservation", newReservation)
-                .then(function(data) {
-                console.log(data);
-                alert("Adding reservation...");
+            $.post("/api/addreservation", newReservation, 
+            function(data) {
+                if (data) {
+                  alert("You are booked");
+                } else {
+                  alert("You are on the waitlist");
+                }
                 }); 
+
+                $("#name").val("");
+                $("#phone").val("");
+                $("#email").val("");
+                $("#id").val("");
             });
     </script>
 

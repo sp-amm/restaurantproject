@@ -36,6 +36,19 @@
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <h4> Wait List</h4>
+          </div>
+          <div class="card-body">
+            <ul id="waitList" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
     
 
     <!-- Optional JavaScript; choose one of the two! -->
@@ -69,9 +82,34 @@
             }
         })
       }
+
+      function getWaitList(){
+        $.get("/api/waitlist",function(data){
+          console.log(data);
+            for (let index = 0; index < data.length; index++) {
+              
+              let tableList = $("#waitList");
+
+              let tableListItem = $("<li class=`list-group-item mt-4>")
+              
+              tableListItem.append(
+                $("<h2>").text(`Table# ${index + 1}`),
+                $("<br>"),
+                $("<h2>").text(`ID: ${data[index].customerID}`),
+                $("<h2>").text(`Name: ${data[index].customerName}`),
+                $("<h2>").text(`Email: ${data[index].customerEmail}`), 
+                $("<h2>").text(`Phone: ${data[index].customerPhone}`), 
+                $("<br>"),
+              );
+
+              tableList.append(tableListItem);
+            }
+        })
+      }
       $( document ).ready(function() {
     console.log( "ready!" );
     getTables();
+    getWaitList();
 });
       
 </script>
