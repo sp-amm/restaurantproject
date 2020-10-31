@@ -7,7 +7,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script>
 
+    
     <title>Restaruant Booking App</title>
   </head>
   <body>
@@ -21,21 +23,61 @@
         <div class="justify-content-center">
         <a class="btn btn-danger btn-lg" href="reservation.html" role="button">Make a reservation</a>
         <button type="button" class="btn btn-lg-dark" href="index.html">Home</button>
-    </div>
       </div>
+    </div>
 
     <div class="row">
-        <div></div>
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <h4> Current Reservations</h4>
+          </div>
+          <div class="card-body">
+            <ul id="reservationList" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
     </div>
+    
 
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
+    <script>
+      function getTables(){
+        $.get("/api/tables",function(data){
+          console.log(data);
+            for (let index = 1; index < data.length; index++) {
+              
+              let tableList = $("#reservationList");
+
+              let tableListItem = $("<li class=`list-group-item mt-4>")
+              
+              tableListItem.append(
+                $("<h2>").text(`Table# ${index}`),
+                $("<br>"),
+                $("<h2>").text(`ID: ${data[index].customerID}`),
+                $("<h2>").text(`ID: ${data[index].customerName}`),
+                $("<h2>").text(`ID: ${data[index].customerEmail}`), 
+                $("<h2>").text(`ID: ${data[index].customerPhone}`), 
+              );
+
+              tableList.append(tableListItem);
+            }
+        })
+      }
+      $( document ).ready(function() {
+    console.log( "ready!" );
+    getTables();
+});
+      
+</script>
+
     <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <scrip src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></scrip>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     -->

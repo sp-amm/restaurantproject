@@ -9,20 +9,44 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const customers = [
+    {
+      customerID: 1,
+      customerName: "John",
+      customerEmail:"John's email",
+      customerPhone: 123456
+    },
+    {
+        customerID: 2,
+        customerName: "Mark",
+        customerEmail:"Mark's email",
+        customerPhone: 123456
+    },
+    {
+        customerID: 3,
+        customerName: "Jack",
+        customerEmail:"Jack's email",
+        customerPhone: 123456
+    }
+  ];
+  
 
 // roputes for html pages
 app.get("/", (req,res)=> {
     res.sendFile(path.join(__dirname, "index.html"));
 })
 
-app.get("/tables", (req,res)=> {
+app.get("/tables.html", (req,res)=> {
     res.sendFile(path.join(__dirname, "tables.html"));
 })
 
-app.get("/reservation", (req,res)=> {
+app.get("/reservation.html", (req,res)=> {
     res.sendFile(path.join(__dirname, "reservation.html"));
 })
 
+app.get("/api/tables", (req,res)=> {
+    return res.send(customers);
+})
 
 app.listen(PORT, ()=> {
     console.log(`Server listening on: http://localhost: ${PORT}`);
