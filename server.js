@@ -1,4 +1,4 @@
-let http = require("http");
+let path = require("path");
 let express = require("express");
 
 let app = express();
@@ -9,10 +9,10 @@ app.use(express.json());
 
 let tables = [];
 
-app.get("/", function(require, response){
-    response.sendFile(path.join(__dirname,""));
-});
+app.get("/", (req,res)=> {
+    res.send("Server Ready");
+})
 
-app.listen(PORT,function(){
-    console.log("App listening on PORT " + PORT);
-});
+app.listen(PORT, ()=> {
+    console.log(`Server listening on: http://localhost: ${PORT}`);
+})
