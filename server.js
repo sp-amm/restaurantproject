@@ -29,6 +29,8 @@ const customers = [
         customerPhone: 123456
     }
   ];
+
+  const waitingList = [];
   
 
 // roputes for html pages
@@ -52,10 +54,20 @@ app.get("/api/tables", (req,res)=> {
     return res.send(customers);
 })
 
+app.get("/api/waitlist", (req,res)=> {
+    return res.send(waitingList);
+})
+
 app.post("/api/addreservation", function(req, res){
     let newCustomer = req.body;
 
-    customers.push(newCustomer);
+    if(customers.length <= 4){
+        customers.push(newCustomer);
+        return res.send(true)
+    } else {
+        waitingList.push(newCustomer);
+        return res.send(false);
+    }  
 })
 
 app.listen(PORT, ()=> {
